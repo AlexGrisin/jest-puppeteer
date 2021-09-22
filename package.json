@@ -1,0 +1,36 @@
+{
+  "name": "jest-puppeteer",
+  "version": "1.0.0",
+  "description": "Test web application using jest and puppeteer",
+  "main": "index.js",
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "jest-html-reporter": "^2.5.0",
+    "puppeteer": "^1.19.0",
+    "jest-puppeteer": "^4.3.0",
+    "lighthouse": "^5.2.0",
+    "jest-image-snapshot": "^2.8.0",
+    "puppeteer-screenshot-tester": "^1.1.0"
+  },
+  "jest-html-reporter": {
+    "pageTitle": "Tests",
+    "outputPath": "./results/test-report.html",
+    "includeFailureMsg": true,
+    "includeConsoleLog": true
+  },
+  "scripts": {
+    "test": "jest --config=./jest.config.js --runInBand",
+    "testParallel": "jest --config=./jest.config.js --maxWorkers=3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://agrisin@bitbucket.org/agrisin/jest-puppeteer.git"
+  },
+  "author": "Alexandr Grisin",
+  "license": "ISC",
+  "keywords": [
+    "puppeteer",
+    "lighthouse",
+    "jest"
+  ]
+}

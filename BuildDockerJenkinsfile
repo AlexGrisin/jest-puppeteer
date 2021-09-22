@@ -1,0 +1,36 @@
+def jestPuppeteer = "jest-puppeteer-tests"
+def tag = "${env.BUILD_NUMBER}"
+
+pipeline {
+
+    agent any
+
+    options {
+        skipDefaultCheckout true
+    }
+
+    stages {
+
+        stage('checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('docker build') {
+            steps {
+                sh "docker build --pull --no-cache=true -t ${jestPuppeteer}:${tag} ."
+                sh "docker tag ${jestPuppeteer}:${tag} localhost:5000/${jestPuppeteer}:${tag}"
+                sh "docker tag ${jestPuppeteer}:${tag} localhost:5000/${jestPuppeteer}:latest"
+            }
+        }
+
+        stage('docker push') {
+            steps {
+                sh "docker push localhost:5000/${jestPuppeteer}:${tag}"
+                sh "docker push localhost:5000/${jestPuppeteer}:latest"
+            }
+        }
+
+     }
+}
